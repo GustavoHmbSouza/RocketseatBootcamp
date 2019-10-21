@@ -1,10 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-
 import './App.css'
+import profile from './assets/face.png';
+
 function App()
 {
-    return <h1>Hello RocktSeat</h1>
+    return <img height="100px" src={profile} alt=""/>
 }
 
 export default App;
