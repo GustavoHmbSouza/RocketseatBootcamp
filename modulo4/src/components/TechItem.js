@@ -12,4 +12,9 @@ function TechItem(props)
     
 }
 
+//Setando valores default nas props
+TechItem.defaultProps = {
+    tech: 'Oculto',
+};
+
 export default TechItem;
