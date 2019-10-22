@@ -13,10 +13,13 @@ function TechItem(props)
 }
 
 //Setando valores default nas props
+//É diferente a implementação na classe..
 TechItem.defaultProps = {
     tech: 'Oculto',
 };
 
+//Setando types para variaveis 
+//É diferente a implementação na classe..
 TechItem.PropTypes = {
     tech: PropTypes.string,
     onDelete: PropTypes.func.isRequired,
