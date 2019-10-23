@@ -2,17 +2,31 @@ import React, { Component } from 'react';
 
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Container, Form, SubmitButton, List } from './styles';
-
+import { Link } from 'react-router-dom';
 import api from '../../services/app';
 
 export default class main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            newRepo: '',
-            repositories: [],
-            loading: false,
-        };
+    // eslint-disable-next-line react/state-in-constructor
+    state = {
+        newRepo: '',
+        repositories: [],
+        loading: false,
+    };
+
+    componentDidMount() {
+        const repositories = localStorage.getItem('repositories');
+
+        if (repositories) {
+            this.setState({ repositories: JSON.parse(repositories) });
+        }
+    }
+
+    // eslint-disable-next-line react/no-deprecated
+    componentDidUpdate(_, prevState) {
+        const { repositories } = this.state;
+        if (prevState.repositories !== repositories) {
+            localStorage.setItem('repositories', JSON.stringify(repositories));
+        }
     }
 
     handleInputChange = e => {
@@ -55,7 +69,7 @@ export default class main extends Component {
                     <input
                         type="text"
                         placeholder="Adicionar repositório"
-                        valor={newRepo}
+                        value={newRepo}
                         onChange={this.handleInputChange}
                     />
 
@@ -71,7 +85,9 @@ export default class main extends Component {
                     {repositories.map(repository => (
                         <li key={repository.name}>
                             <spam>{repository.name}</spam>
-                            <a href="">Detalhes</a>
+                            <Link to={`/repository/${repository.name}`}>
+                                Detalhes
+                            </Link>
                         </li>
                     ))}
                 </List>
