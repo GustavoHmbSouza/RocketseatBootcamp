@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
-import { Container, Form, SubmitButton, List } from './styles';
 import { Link } from 'react-router-dom';
-import api from '../../services/app';
+import { Container, Form, SubmitButton, List } from './styles';
+import api from '../../services/api';
 
 export default class main extends Component {
     // eslint-disable-next-line react/state-in-constructor
@@ -85,7 +85,11 @@ export default class main extends Component {
                     {repositories.map(repository => (
                         <li key={repository.name}>
                             <spam>{repository.name}</spam>
-                            <Link to={`/repository/${repository.name}`}>
+                            <Link
+                                to={`/repository/${encodeURIComponent(
+                                    repository.name
+                                )}`}
+                            >
                                 Detalhes
                             </Link>
                         </li>
