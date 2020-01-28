@@ -13,6 +13,12 @@ class UserController {
         const user = await User.create(req.body);
         return res.json(user);
     }
+
+    async update(req, res) {
+        console.log(req.userId);
+
+        return res.json({ ok: true });
+    }
 }
 
 export default new UserController();
